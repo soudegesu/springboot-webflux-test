@@ -8,8 +8,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class HelloWebFluxApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(HelloWebFluxApplication.class, args);
-        run.close();
+        ConfigurableApplicationContext context = SpringApplication.run(HelloWebFluxApplication.class, args); //NOSONAR
+        context.registerShutdownHook();
     }
 
 }
