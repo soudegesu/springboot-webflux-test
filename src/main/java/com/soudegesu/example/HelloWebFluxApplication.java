@@ -11,5 +11,4 @@ public class HelloWebFluxApplication {
         ConfigurableApplicationContext context = SpringApplication.run(HelloWebFluxApplication.class, args); //NOSONAR
         context.registerShutdownHook();
     }
-
 }
