@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 @RestController
 public class HelloController {
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     Flux<String> hello() {
         return Flux.just("Hello", "World", "!!");
     }
