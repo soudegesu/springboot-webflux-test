@@ -18,12 +18,16 @@ public class WebClientHandler {
     }
 
     private Mono<ServerResponse> webclient(ServerRequest req) {
-        WebClient client = WebClient.create("http://localhost:8080/mono");
+        WebClient client = WebClient.builder()
+                .baseUrl("http://localhost:8080/")
+                .build();
+
         Mono<Value> res = client.get()
-                .uri("/")
+                .uri("/mono")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .flatMap(response -> response.bodyToMono(Value.class));
+
         return ServerResponse
                 .ok()
                 .body(res, Value.class)
