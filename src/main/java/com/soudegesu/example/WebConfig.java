@@ -2,10 +2,9 @@ package com.soudegesu.example;
 
 import com.soudegesu.example.handler.*;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.config.DelegatingWebFluxConfiguration;
 import org.springframework.web.reactive.config.EnableWebFlux;
-import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -14,9 +13,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 
 @Configuration
-@ComponentScan("com.soudegesu.example")
 @EnableWebFlux
-public class WebConfig implements WebFluxConfigurer {
+public class WebConfig extends DelegatingWebFluxConfiguration {
     /**
      * Basic Router Function
      * @return
@@ -76,5 +74,15 @@ public class WebConfig implements WebFluxConfigurer {
     @Bean
     RouterFunction<ServerResponse> route6(StreamHelloHandler streamHelloHandler) {
         return streamHelloHandler.routes();
+    }
+
+    /**
+     * Use WebClient
+     * @param webClientHandler
+     * @return
+     */
+    @Bean
+    RouterFunction<ServerResponse> route7(WebClientHandler webClientHandler) {
+        return webClientHandler.routes();
     }
 }

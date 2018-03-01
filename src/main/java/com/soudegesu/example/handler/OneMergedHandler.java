@@ -13,6 +13,7 @@ public class OneMergedHandler {
     }
 
     private Mono<ServerResponse> hello(ServerRequest req) {
+
         return ServerResponse.ok().body(Flux.just("one", "ok"), String.class);
     }
 

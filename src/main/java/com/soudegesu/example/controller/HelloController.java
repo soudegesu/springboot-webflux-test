@@ -18,8 +18,8 @@ public class HelloController {
     }
 
     @GetMapping("/mono")
-    Mono<String> mono() {
-        return Mono.just("Hello");
+    Mono<Map<String, Integer>> mono() {
+        return Mono.just(Collections.singletonMap("value", 1));
     }
 
     @GetMapping("/stream")
