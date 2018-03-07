@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE'
-        classpath "gradle.plugin.com.sourcemuse.gradle.plugin:GradleMongoPlugin:1.0.6"
+//        classpath "gradle.plugin.com.sourcemuse.gradle.plugin:GradleMongoPlugin:1.0.6"
     }
 }
 
@@ -15,7 +15,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.sourcemuse.mongo'
+//apply plugin: 'com.sourcemuse.mongo'
 
 idea {
     module {
@@ -46,12 +46,12 @@ sourceSets {
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
 }
 
 task integrationTest(type: Test) {
-    runWithMongoDb = true
+//    runWithMongoDb = true
 }
 
 task wrapper(type: Wrapper) {
