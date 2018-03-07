@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mock:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock
+    hostname: mock
+    volumes:
+      - ./mock/lua_file/:/usr/local/openresty/nginx/lua_file
+      - ./mock/conf.d/:/usr/local/openresty/nginx/conf.d
+      - ./mock/logs/:/usr/local/openresty/nginx/logs
+    ports:
+      - 9080:80
+      - 9443:443
