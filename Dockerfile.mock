@@ -1,0 +1,15 @@
+# How to build
+# ``` docker build -f Dockerfile -t clarisse-mock .. ```
+
+FROM openresty/openresty:latest-centos
+
+#ADD ./mock/files/cert/* /usr/local/openresty/nginx/cert/
+ADD ./mock/nginx.conf /usr/local/openresty/nginx/conf/
+ADD ./mock/conf.d/ /usr/local/openresty/nginx/conf.d/
+ADD ./mock/lua_file/ /usr/local/openresty/nginx/lua_file/
+
+RUN /bin/cp -f /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+EXPOSE 80 443
+
+ENTRYPOINT ["/usr/local/openresty/nginx/sbin/nginx", "-g", "daemon off;"]

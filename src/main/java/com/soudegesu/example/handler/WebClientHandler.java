@@ -19,31 +19,43 @@ public class WebClientHandler {
 
     private Mono<ServerResponse> webclient(ServerRequest req) {
         WebClient client = WebClient.builder()
-                .baseUrl("http://localhost:8080/")
+                .baseUrl("http://localhost:9080/")
                 .build();
 
-        Mono<Value> res = client.get()
-                .uri("/mono")
+        Mono<User> res = client.get()
+                .uri("/test")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
-                .flatMap(response -> response.bodyToMono(Value.class));
+                .log()
+                .flatMap(response -> response.bodyToMono(User.class))
+                .log();
 
         return ServerResponse
                 .ok()
-                .body(res, Value.class)
+                .body(res, User.class)
                 .switchIfEmpty(ServerResponse.notFound().build());
 
     }
 
-    private static class Value {
-        private Integer value;
+    private static class User {
+        private Integer id;
 
-        public Integer getValue() {
-            return value;
+        private String name;
+
+        public Integer getId() {
+            return id;
         }
 
-        public void setValue(Integer value) {
-            this.value = value;
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }
