@@ -1,0 +1,12 @@
+plugins {
+    id 'com.github.lkishalmi.gatling' version '0.7.1'
+}
+
+repositories {
+    jcenter()
+}
+
+gatling {
+    toolVersion = '2.3.0'
+    jvmArgs = [ '-server', '-Xms512M', '-Xmx512M' ]
+}

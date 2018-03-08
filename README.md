@@ -17,3 +17,9 @@ This repository dependes on
 ```
 docker-compose up &
 ```
+
+* execute gatling
+
+```
+./gradlew gatlingRun
+```

@@ -2,4 +2,6 @@ include 'modules:webflux'
 findProject(':modules:webflux')?.name = 'webflux'
 include 'modules:mvc'
 findProject(':modules:mvc')?.name = 'mvc'
+include 'modules:gatling'
+findProject(':modules:gatling')?.name = 'gatling'
 
