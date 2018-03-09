@@ -4,6 +4,6 @@ import com.soudegesu.example.mvc.response.User;
 
 public interface HelloService {
 
-    User getUser();
+    User getUser(Double time);
 
 }
