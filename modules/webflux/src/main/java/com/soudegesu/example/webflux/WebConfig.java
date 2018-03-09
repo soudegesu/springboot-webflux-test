@@ -1,6 +1,6 @@
 package com.soudegesu.example;
 
-import com.soudegesu.example.handler.*;
+import com.soudegesu.example.webflux.handler.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.DelegatingWebFluxConfiguration;
