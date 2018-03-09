@@ -1,6 +1,7 @@
 package com.soudegesu.example.webflux.handler;
 
 import com.soudegesu.example.webflux.response.User;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -10,6 +11,9 @@ import reactor.core.publisher.Mono;
 @Component
 public class WebClientHandler {
 
+    private static final String BASE_URI = "http://localhost:9080";
+
+    private static final String PATH = "/test";
 
     public RouterFunction<ServerResponse> routes() {
         return RouterFunctions.route(
@@ -19,20 +23,25 @@ public class WebClientHandler {
     }
 
     private Mono<ServerResponse> webclient(ServerRequest req) {
-        WebClient client = WebClient.builder()
-                .baseUrl("http://localhost:9080/")
-                .build();
-
-        Mono<User> res = client.get()
-                .uri("/test")
+        return WebClient.builder()
+                .baseUrl(BASE_URI)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString())
+                .build()
+                .get()
+                .uri(uriBuilder -> {
+                    uriBuilder.path(PATH);
+                    if (req.queryParam("time").isPresent()) {
+                        uriBuilder.queryParam("time", req.queryParam("time").get());
+                    }
+                    return uriBuilder.build();
+                })
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
-                .flatMap(response -> response.bodyToMono(User.class));
-
-        return ServerResponse
-                .ok()
-                .body(res, User.class)
-                .switchIfEmpty(ServerResponse.notFound().build());
-
+                .flatMap(response ->
+                    ServerResponse.ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(response.bodyToMono(User.class), User.class)
+                            .switchIfEmpty(ServerResponse.notFound().build())
+                );
     }
 }
