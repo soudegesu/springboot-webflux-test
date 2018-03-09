@@ -26,7 +26,7 @@ class SleepHelloSimulation extends Simulation {
       )
 
   setUp(helloScenario.inject(
-        rampUsersPerSec(1) to(100) during(rampSec seconds),
-        constantUsersPerSec(100) during(constantSec seconds)
+        rampUsersPerSec(1) to(70) during(rampSec seconds),
+        constantUsersPerSec(70) during(constantSec seconds)
       ).protocols(httpConf))
 }

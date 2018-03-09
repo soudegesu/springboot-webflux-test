@@ -13,7 +13,7 @@ public class WebClientHandler {
 
     public RouterFunction<ServerResponse> routes() {
         return RouterFunctions.route(
-                RequestPredicates.GET("/webclient/{id}")
+                RequestPredicates.GET("/hello")
                         .and(RequestPredicates.accept(MediaType.APPLICATION_JSON))
                 , this::webclient);
     }
@@ -27,9 +27,7 @@ public class WebClientHandler {
                 .uri("/test")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
-                .log()
-                .flatMap(response -> response.bodyToMono(User.class))
-                .log();
+                .flatMap(response -> response.bodyToMono(User.class));
 
         return ServerResponse
                 .ok()

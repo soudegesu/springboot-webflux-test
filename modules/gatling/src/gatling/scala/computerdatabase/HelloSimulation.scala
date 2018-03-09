@@ -26,7 +26,7 @@ class HelloSimulation extends Simulation {
       )
 
   setUp(helloScenario.inject(
-        rampUsersPerSec(1) to(30) during(rampSec seconds),
-        constantUsersPerSec(30) during(constantSec seconds)
+        rampUsersPerSec(1) to(70) during(rampSec seconds),
+        constantUsersPerSec(70) during(constantSec seconds)
       ).protocols(httpConf))
 }

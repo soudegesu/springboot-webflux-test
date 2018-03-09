@@ -12,11 +12,6 @@ import java.util.stream.Stream;
 @RestController
 public class HelloController {
 
-    @GetMapping("/hello")
-    Flux<String> hello() {
-        return Flux.just("Hello", "World", "!!");
-    }
-
     @GetMapping("/mono")
     Mono<Map<String, Integer>> mono() {
         return Mono.just(Collections.singletonMap("value", 1));
