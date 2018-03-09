@@ -1,4 +1,4 @@
-package com.soudegesu.example.service;
+package com.soudegesu.example.webflux.service;
 
 public class HelloServiceImpl implements HelloService {
 

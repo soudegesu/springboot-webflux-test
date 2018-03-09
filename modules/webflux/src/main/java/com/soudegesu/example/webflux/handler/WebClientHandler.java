@@ -1,5 +1,6 @@
-package com.soudegesu.example.handler;
+package com.soudegesu.example.webflux.handler;
 
+import com.soudegesu.example.webflux.response.User;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -35,27 +36,5 @@ public class WebClientHandler {
                 .body(res, User.class)
                 .switchIfEmpty(ServerResponse.notFound().build());
 
-    }
-
-    private static class User {
-        private Integer id;
-
-        private String name;
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
     }
 }

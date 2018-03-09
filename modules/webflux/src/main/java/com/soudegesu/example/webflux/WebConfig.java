@@ -1,4 +1,4 @@
-package com.soudegesu.example;
+package com.soudegesu.example.webflux;
 
 import com.soudegesu.example.webflux.handler.*;
 import org.springframework.context.annotation.Bean;
