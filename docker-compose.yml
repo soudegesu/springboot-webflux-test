@@ -1,5 +1,21 @@
 version: '2'
 services:
+  mvc:
+    image: openjdk:8-jdk-alpine
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/mvc
+    working_dir: /mvc
+    command: ./gradlew :modules:mvc:bootRun
+    depends_on:
+      - mock
+    extra_hosts:
+     - "mock.soudegesu.com:10.2.0.3"
+    networks:
+      vpcbr:
+        ipv4_address: 10.2.0.2
+
   mock:
     build:
       context: .
@@ -12,13 +28,28 @@ services:
     ports:
       - 9080:80
       - 9443:443
+    networks:
+      vpcbr:
+        ipv4_address: 10.2.0.3
+
   monitor:
-    build:
-      context: .
-      dockerfile: Dockerfile.monitor
+    image: prom/prometheus
     volumes:
       - ./monitor/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
+    depends_on:
+      - mvc
+    extra_hosts:
+     - "web.soudegesu.com:10.2.0.2"
+    networks:
+      vpcbr:
+        ipv4_address: 10.2.0.5
 
-
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.2.0.0/16
+         gateway: 10.2.0.1

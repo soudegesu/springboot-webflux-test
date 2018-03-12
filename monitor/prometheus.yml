@@ -7,6 +7,6 @@ scrape_configs:
     # List of labeled statically configured targets for this job.
     # execute command route | awk 'NR==3 {print $2}' in monitor container
     static_configs:
-      - targets: ['172.20.0.1:8080']
+      - targets: ['web.soudegesu.com:8080']
     # The HTTP resource path on which to fetch metrics from targets.
     metrics_path: /actuator/prometheus
