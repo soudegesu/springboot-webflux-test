@@ -5,7 +5,8 @@ scrape_configs:
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
     # List of labeled statically configured targets for this job.
+    # execute command route | awk 'NR==3 {print $2}' in monitor container
     static_configs:
-      - targets: ['127.0.0.1:8080']
+      - targets: ['172.20.0.1:8080']
     # The HTTP resource path on which to fetch metrics from targets.
     metrics_path: /actuator/prometheus
