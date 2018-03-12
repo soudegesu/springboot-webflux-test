@@ -1,0 +1,13 @@
+server:
+  tomcat:
+    accept-count: 70
+    max-threads: 70
+    min-spare-threads: 70
+    max-connections: 70
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,prometheus,metrics,httptrace,threaddump,heapdump
+        exclude: flyway

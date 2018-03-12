@@ -18,8 +18,15 @@ This repository dependes on
 docker-compose up &
 ```
 
-* execute gatling
+* execute all gatling simulations
 
 ```
 ./gradlew gatlingRun
+```
+
+* execute specific gatling simulation
+
+ex)
+```
+./gradlew gatlingRun-computerdatabase.SleepHelloSimulation`
 ```

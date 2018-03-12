@@ -1,0 +1,12 @@
+# A scrape configuration containing exactly one endpoint to scrape:
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'spring-boot-2.0'
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    # List of labeled statically configured targets for this job.
+    # execute command route | awk 'NR==3 {print $2}' in monitor container
+    static_configs:
+      - targets: ['web.soudegesu.com:8080']
+    # The HTTP resource path on which to fetch metrics from targets.
+    metrics_path: /actuator/prometheus

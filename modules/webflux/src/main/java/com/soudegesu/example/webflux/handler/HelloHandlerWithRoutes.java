@@ -1,4 +1,4 @@
-package com.soudegesu.example.handler;
+package com.soudegesu.example.webflux.handler;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.*;

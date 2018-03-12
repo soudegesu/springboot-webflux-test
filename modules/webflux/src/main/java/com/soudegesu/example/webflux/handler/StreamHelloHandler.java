@@ -1,4 +1,4 @@
-package com.soudegesu.example.handler;
+package com.soudegesu.example.webflux.handler;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;

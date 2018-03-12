@@ -5,7 +5,7 @@ import scala.concurrent.duration._
 import java.util.UUID
 import scala.util.Random
 
-class HelloSimulation extends Simulation {
+class SleepHelloSimulation extends Simulation {
 
   var rampSec = 60
   // 1 min
@@ -21,7 +21,7 @@ class HelloSimulation extends Simulation {
 
   val helloScenario = scenario("Hello Scenario")
       .exec(http("request")
-          .get("/hello")
+          .get("/hello?time=1")
           .check(status.is(200))
       )
 

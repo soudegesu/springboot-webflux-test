@@ -4,7 +4,17 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    verSpringboot = "2.0.0.RELEASE"
+}
+
+springBoot {
+    mainClassName = 'com.soudegesu.example.mvc.HelloMvcApplication'
+}
+
 dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: verSpringboot
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: verSpringboot
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.0.1'
 }
