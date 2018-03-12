@@ -8,6 +8,10 @@ ext {
     verSpringboot = "2.0.0.RELEASE"
 }
 
+springBoot {
+    mainClassName = 'com.soudegesu.example.mvc.HelloMvcApplication'
+}
+
 dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: verSpringboot

@@ -1,26 +1,15 @@
 description = 'webflux'
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
+repositories {
+    mavenCentral()
 }
 
 ext {
     verSpringboot = "2.0.0.RELEASE"
 }
 
-apply plugin: 'org.springframework.boot'
-
-idea {
-    module {
-        inheritOutputDirs = false
-        testSourceDirs += file('src/integration-test/java')
-    }
-}
-
-repositories {
-    mavenCentral()
+springBoot {
+    mainClassName = 'com.soudegesu.example.webflux.HelloWebFluxApplication'
 }
 
 dependencies {
