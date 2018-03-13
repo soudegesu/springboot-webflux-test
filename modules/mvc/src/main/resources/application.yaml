@@ -1,10 +1,10 @@
 server:
   port: 8081
-  tomcat:
-    accept-count: 70
-    max-threads: 70
-    min-spare-threads: 70
-    max-connections: 70
+#  tomcat:
+#    accept-count: 70
+#    max-threads: 70
+#    min-spare-threads: 70
+#    max-connections: 70
 
 management:
   endpoints:
