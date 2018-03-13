@@ -1,4 +1,18 @@
 description = 'mvc'
+buildscript {
+    repositories {
+        maven {
+            url 'http://repo.spring.io/plugins-release'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: "2.0.0.RELEASE"
+    }
+}
 
 repositories {
     mavenCentral()
@@ -6,6 +20,19 @@ repositories {
 
 ext {
     verSpringboot = "2.0.0.RELEASE"
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+compileJava {
+    options.fork = true
+    options.forkOptions.executable = "javac" // assumes that javac is on PATH
+    options.compilerArgs << "-XDignore.symbol.file"
 }
 
 springBoot {
@@ -17,4 +44,8 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: verSpringboot
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: verSpringboot
     compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.0.1'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5.1'
 }

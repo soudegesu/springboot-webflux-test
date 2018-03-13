@@ -2,19 +2,39 @@ version: '2'
 services:
   mvc:
     image: openjdk:8-jdk-alpine
+    expose:
+      - 8081
     ports:
-      - 8080:8080
+      - 8081:8081
     volumes:
-      - .:/mvc
+      - ./modules/mvc:/mvc
     working_dir: /mvc
-    command: ./gradlew :modules:mvc:bootRun
+    command: ./gradlew bootRun
     depends_on:
       - mock
     extra_hosts:
-     - "mock.soudegesu.com:10.2.0.3"
+     - "mock.soudegesu.com:10.2.0.4"
     networks:
       vpcbr:
         ipv4_address: 10.2.0.2
+
+  webflux:
+    image: openjdk:8-jdk-alpine
+    expose:
+      - 8082
+    ports:
+      - 8082:8082
+    volumes:
+      - ./modules/webflux:/webflux
+    working_dir: /webflux
+    command: ./gradlew bootRun
+    depends_on:
+      - mock
+    extra_hosts:
+     - "mock.soudegesu.com:10.2.0.4"
+    networks:
+      vpcbr:
+        ipv4_address: 10.2.0.3
 
   mock:
     build:
@@ -30,7 +50,7 @@ services:
       - 9443:443
     networks:
       vpcbr:
-        ipv4_address: 10.2.0.3
+        ipv4_address: 10.2.0.4
 
   monitor:
     image: prom/prometheus
@@ -39,9 +59,11 @@ services:
     ports:
       - 9090:9090
     depends_on:
-      - mvc
+#      - mvc
+      - webflux
     extra_hosts:
-     - "web.soudegesu.com:10.2.0.2"
+     - "mvc.soudegesu.com:10.2.0.2"
+     - "webflux.soudegesu.com:10.2.0.3"
     networks:
       vpcbr:
         ipv4_address: 10.2.0.5
