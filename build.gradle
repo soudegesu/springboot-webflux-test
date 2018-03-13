@@ -1,49 +1,6 @@
-buildscript {
-    repositories {
-        maven {
-            url 'http://repo.spring.io/plugins-release'
-        }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: "2.0.0.RELEASE"
-    }
-}
-
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
-}
-
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-    compileJava {
-        options.fork = true
-        options.forkOptions.executable = "javac" // assumes that javac is on PATH
-        options.compilerArgs << "-XDignore.symbol.file"
-    }
-
-    sourceSets {
-        integrationTest {
-            java {
-                compileClasspath += main.output + test.output
-                runtimeClasspath += main.output + test.output
-                srcDir file('src/integration-test/java')
-            }
-            resources {
-                srcDir file('src/integration-test/resources')
-            }
-        }
-    }
 }
 
 task wrapper(type: Wrapper) {
