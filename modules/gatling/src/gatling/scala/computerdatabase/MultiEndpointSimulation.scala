@@ -9,7 +9,6 @@ class MultiEndpointSimulation extends Simulation {
     // 1 min
     var constantSec = 5 * 60 * 1
     val httpConf = http
-            .baseURL("")
             .acceptCharsetHeader("utf-8")
             .acceptHeader("application/json")
             .acceptEncodingHeader("gzip, deflate")
@@ -36,7 +35,7 @@ class MultiEndpointSimulation extends Simulation {
             )
 
     setUp(
-      helloScenario.inject(rampUsersPerSec(1) to(5) during(rampSec seconds), constantUsersPerSec(5) during(constantSec seconds)).protocols(httpConf)
+      helloScenario.inject(rampUsersPerSec(1) to(80) during(rampSec seconds), constantUsersPerSec(80) during(constantSec seconds)).protocols(httpConf)
     )
 
 }
