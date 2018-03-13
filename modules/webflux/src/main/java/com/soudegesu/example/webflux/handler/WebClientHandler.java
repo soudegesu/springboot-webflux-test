@@ -1,6 +1,7 @@
 package com.soudegesu.example.webflux.handler;
 
 import com.soudegesu.example.webflux.response.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class WebClientHandler {
 
-    private static final String BASE_URI = "http://localhost:9080";
+    @Value("${app.backend.uri}")
+    private String baseUri;
 
     private static final String PATH = "/test";
 
@@ -24,7 +26,7 @@ public class WebClientHandler {
 
     private Mono<ServerResponse> webclient(ServerRequest req) {
         return WebClient.builder()
-                .baseUrl(BASE_URI)
+                .baseUrl(baseUri)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString())
                 .build()
                 .get()
