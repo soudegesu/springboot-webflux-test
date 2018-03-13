@@ -3,6 +3,7 @@ package com.soudegesu.example.mvc.service;
 import com.soudegesu.example.mvc.component.RestTemplateFactory;
 import com.soudegesu.example.mvc.response.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,7 +17,10 @@ import java.util.List;
 @Service
 public class HelloServiceImpl implements HelloService {
 
-    private static final String URI = "http://localhost:9080/test";
+    @Value("${app.backend.uri}")
+    private String baseUri;
+
+    private static final String PATH = "/test";
 
     private static final List<MediaType> MEDIA_TYPES = new ArrayList() {{
         add(MediaType.APPLICATION_JSON);
@@ -30,7 +34,7 @@ public class HelloServiceImpl implements HelloService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(MEDIA_TYPES);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URI);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseUri + PATH);
         if (time != null) {
             builder.queryParam("time", time);
         }

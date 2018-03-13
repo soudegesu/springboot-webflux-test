@@ -12,3 +12,7 @@ management:
       exposure:
         include: info,health,prometheus,metrics,httptrace,threaddump,heapdump
         exclude: flyway
+
+app:
+  backend:
+    uri: http://mock.soudegesu.com:80

@@ -45,6 +45,8 @@ services:
       - ./mock/lua_file/:/usr/local/openresty/nginx/lua_file
       - ./mock/conf.d/:/usr/local/openresty/nginx/conf.d
       - ./mock/logs/:/usr/local/openresty/nginx/logs
+    expose:
+      - 80
     ports:
       - 9080:80
       - 9443:443
@@ -59,7 +61,7 @@ services:
     ports:
       - 9090:9090
     depends_on:
-#      - mvc
+      - mvc
       - webflux
     extra_hosts:
      - "mvc.soudegesu.com:10.2.0.2"
