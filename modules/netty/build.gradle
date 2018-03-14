@@ -37,7 +37,9 @@ compileJava {
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: verSpringboot
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: verSpringboot
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-reactor-netty', version: verSpringboot
+
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: verSpringboot
     compile group: 'io.netty', name: 'netty-all', version: '4.1.22.Final'
     compile group: 'io.netty', name: 'netty-transport-native-kqueue', version: '4.1.22.Final'
     compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.0.1'
