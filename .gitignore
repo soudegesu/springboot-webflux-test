@@ -33,3 +33,6 @@ build
 # mock container
 mock/logs
 out/
+
+# propertyfile
+application-dev.yaml
