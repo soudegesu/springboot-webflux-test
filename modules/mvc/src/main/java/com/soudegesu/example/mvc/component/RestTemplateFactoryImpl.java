@@ -13,9 +13,9 @@ import javax.annotation.PostConstruct;
 @Component
 public class RestTemplateFactoryImpl implements RestTemplateFactory {
 
-    private static final int DAFAULT_AMX_PER_ROUTE = 100;
+    private static final int DAFAULT_AMX_PER_ROUTE = 200;
 
-    private static final int MAX_TOTAL_CONNECTION = 100;
+    private static final int MAX_TOTAL_CONNECTION = 200;
 
     private static final int VALIDATE_AFTER_INACTIVITY = 100;
 
