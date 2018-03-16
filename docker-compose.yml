@@ -17,6 +17,11 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.2.0.2
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65536
+        hard: 65536
 
   webflux:
     image: openjdk:8-jdk-alpine
@@ -35,6 +40,11 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.2.0.3
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65536
+        hard: 65536
 
   mock:
     build:
@@ -53,6 +63,12 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.2.0.4
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65536
+        hard: 65536
+
 
   prometheus:
     image: prom/prometheus
@@ -76,8 +92,6 @@ services:
       - 3000:3000
     depends_on:
       - prometheus
-#    extra_hosts:
-#     - "prom.soudegesu.com:10.2.0.5"
     env_file:
       - ./monitor/grafana.env
 
