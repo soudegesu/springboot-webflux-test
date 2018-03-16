@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.server.*;
 import reactor.core.publisher.Mono;
 
 @Component
-public class WebClientHandler {
+public class HelloWebClientHandler {
 
     @Value("${app.backend.uri}")
     private String baseUri;

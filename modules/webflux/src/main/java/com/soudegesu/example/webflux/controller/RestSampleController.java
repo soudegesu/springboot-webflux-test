@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 @RestController
-public class HelloController {
+public class RestSampleController {
 
     @GetMapping("/mono")
     Mono<Map<String, Integer>> mono() {

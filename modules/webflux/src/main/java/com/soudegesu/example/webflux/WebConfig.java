@@ -36,16 +36,6 @@ public class WebConfig extends DelegatingWebFluxConfiguration {
     }
 
     /**
-     * In case of using Handler
-     * @param helloHandler
-     * @return
-     */
-    @Bean
-    RouterFunction<ServerResponse> routes3(HelloHandler helloHandler) {
-        return RouterFunctions.route(RequestPredicates.GET("/handler"), helloHandler::hello);
-    }
-
-    /**
      * In case of wrapping routing settings with handler
      * @param helloHandlerWithRoutes
      * @return
@@ -82,7 +72,7 @@ public class WebConfig extends DelegatingWebFluxConfiguration {
      * @return
      */
     @Bean
-    RouterFunction<ServerResponse> route7(WebClientHandler webClientHandler) {
+    RouterFunction<ServerResponse> route7(HelloWebClientHandler webClientHandler) {
         return webClientHandler.routes();
     }
 }
