@@ -16,15 +16,6 @@ class MultiEndpointSimulation extends Simulation {
             .doNotTrackHeader("1")
             .disableFollowRedirect
 
-//    val httpWebfluxConf = http
-//      .baseURL("http://localhost:8082")
-//      .acceptCharsetHeader("utf-8")
-//      .acceptHeader("application/json")
-//      .acceptEncodingHeader("gzip, deflate")
-//      .acceptLanguageHeader("fr,fr-fr;q=0.8,en-us;q=0.5,en;q=0.3")
-//      .doNotTrackHeader("1")
-//      .disableFollowRedirect
-
     val helloScenario = scenario("Hello Scenario")
             .exec(http("mvc")
                     .get("http://localhost:8081/hello")
@@ -35,7 +26,7 @@ class MultiEndpointSimulation extends Simulation {
             )
 
     setUp(
-      helloScenario.inject(rampUsersPerSec(1) to(80) during(rampSec seconds), constantUsersPerSec(80) during(constantSec seconds)).protocols(httpConf)
+      helloScenario.inject(rampUsersPerSec(1) to(30) during(rampSec seconds), constantUsersPerSec(30) during(constantSec seconds)).protocols(httpConf)
     )
 
 }

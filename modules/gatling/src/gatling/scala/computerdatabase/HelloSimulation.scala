@@ -11,7 +11,7 @@ class HelloSimulation extends Simulation {
   // 1 min
   var constantSec = 1 * 60 * 1
   val httpConf = http
-      .baseURL("http://localhost:8080")
+      .baseURL("http://localhost:8081")
       .acceptCharsetHeader("utf-8")
       .acceptHeader("application/json")
       .acceptEncodingHeader("gzip, deflate")
@@ -26,7 +26,7 @@ class HelloSimulation extends Simulation {
       )
 
   setUp(helloScenario.inject(
-        rampUsersPerSec(1) to(70) during(rampSec seconds),
-        constantUsersPerSec(70) during(constantSec seconds)
+        rampUsersPerSec(1) to(130) during(rampSec seconds),
+        constantUsersPerSec(130) during(constantSec seconds)
       ).protocols(httpConf))
 }
